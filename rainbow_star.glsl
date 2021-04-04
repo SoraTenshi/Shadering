@@ -82,7 +82,7 @@ vec3 hsv2rgb(vec3 hsv)
 void main(void)
 {
   float factor = 0.1;
-	vec2 uv = vec2(gl_FragCoord.x / v2Resolution.x, gl_FragCoord.y / v2Resolution.y);
+  vec2 uv = vec2(gl_FragCoord.x / v2Resolution.x, gl_FragCoord.y / v2Resolution.y);
     
   uv.x -= 0.5;
   uv.x *= v2Resolution.x / v2Resolution.y + 1;
@@ -91,7 +91,6 @@ void main(void)
   uv -= .5;
   uv *= rotat(fGlobalTime - (fGlobalTime*factor))*(uv);
   uv += .5;
-  //float rad = degtorad(factor*fGlobalTime);
   
   float dist = length(uv - vec2(0.5));
   float circle = step(dist, .05);
