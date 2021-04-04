@@ -26,12 +26,6 @@ float degtorad(float deg) {
   return (3.14 / 180.) * (deg * 100.);
 }
 
-vec2 rotate(vec2 what, float modifier) {
-  float r1 = (what.x * cos(modifier) - what.y * sin(modifier));
-  float r2 = (what.x * sin(modifier) + what.y * cos(modifier));
-  return (vec2(r1, r2));
-}
-
 mat2 rotat(float angle) {
   return mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
 }
@@ -43,13 +37,6 @@ vec3 hue2rgb(float hue) {
   float b = 2-abs(hue*6-4);
   vec3 rgb = vec3(r,g,b);
   return rgb;
-}
-
-vec3 lerp(float v0, vec3 v1, float t) {
-  float x = v0 + t*(v1.x-v0);
-  float y = v0 + t*(v1.y-v0);
-  float z = v0 + t*(v1.z-v0);
-  return vec3(x,y,z);
 }
 
 vec3 rgb2hsv(vec3 rgb)
@@ -74,7 +61,7 @@ vec3 rgb2hsv(vec3 rgb)
 vec3 hsv2rgb(vec3 hsv)
 {
     vec3 rgb = hue2rgb(hsv.x); //apply hue
-    rgb = lerp(1, rgb, hsv.y); //apply saturation
+    rgb = mix(vec3(1), rgb, hsv.y); //apply saturation
     rgb = rgb * hsv.z; //apply value
     return rgb;
 }
